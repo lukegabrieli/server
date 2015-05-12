@@ -5,14 +5,16 @@ var fs = require("fs");
 var port = process.argv[2] || 3000;
 
 var server = http.createServer(function(req, res) {
-  var index = "";
-  var folder = __dirname+"/";
-  var file = path.basename(req.url);
+  var path = url.parse(req.url).pathname
 
-  if(file === "index.html") {
-    index = folder + file;
+  //var index = "";
+  //var folder = __dirname+"/";
+  //var file = path.basename(req.url);
 
-    fs.readFile(index, function(err, page) {
+  if(path === "/") {
+    //index = folder + file;
+
+    fs.readFile("index.html", function(err, page) {
       if(err) {
         res.writeHead(500, {"content-type": "text/plain"});
         res.write("Error!");
