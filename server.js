@@ -7,8 +7,6 @@ var port = process.argv[2] || 3000;
 var server = http.createServer(function(req, res) {
   var url = url.parse(req.url).path;
 
-  fs.exists("index.html", function(exists) {
-
   fs.readFile("index.html", function(err, page) {
     if(err) {
       res.writeHead(500, {"content-type": "text/plain"});
